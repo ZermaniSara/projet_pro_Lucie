@@ -50,7 +50,7 @@ Route::get('post', 'PostController@index');
 // Route::get('contact/{id}','ContactController@show')->name('contact.show');
 // Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
 Route::post('/','ContactController@sendMessage')->name('contact.send');
-Route::get('/contactU','ContactController@user')->name('contact.user');
+//Route::get('/contactU','ContactController@user')->name('contact.user');
 
 // Route::get('/contactA','ContactController@index')->name('contact.index');
 
