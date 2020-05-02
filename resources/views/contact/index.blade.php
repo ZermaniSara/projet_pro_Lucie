@@ -368,16 +368,16 @@ $(function() {
       
       $('#saveBtn').click(function (e) {
 
-        // $.get("{{ route('contact.store') }}", function (data) {
+        //  $.get("{{ route('contact.store') }}", function (data) {
       
-        //     $('#create_id').val(data.id);
-        //     $('#messageH').val(data.messageH);
-        //     $('#subject').val(data.subject);
+        //      $('#create_id').val(data.id);
+        //      $('#messageH').val(data.messageH);
+        //      $('#subject').val(data.subject);
            
-        //      $('#user :selected').val(data.user);
+        //       $('#user').val(data.user);
            
          
-        // })
+        //  })
 
            
      
@@ -387,7 +387,7 @@ $(function() {
           $.ajax({
               
              
-            data: $('#productForm').serialize(),
+         data: $('#productForm').serialize(),
             url: "{{ route('contact.store') }}",
             type: "POST",
             dataType: 'json',

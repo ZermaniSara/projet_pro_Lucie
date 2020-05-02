@@ -74,31 +74,27 @@ class ContactController extends Controller
        
         
         
-        // $contact = new Contact();
+         $contact = new Contact();
 
       
 
 
-        // $contact->id= $request->create_id;
-        // $contact->user_id= $request->user;
-        // $contact->subject= $request->subject;
-        // $contact->message= $request->messageH;
+          $contact->id= $request->create_id;
+          $contact->user_id= $request->user;
+          $contact->subject= $request->subject;
+          $contact->message= $request->messageH;
         
         
-        // $contact->save();
+          $contact->save();
         
-    
-    //         $contact->save();
+          
+            // $contact->save();
   
-        // Contacts::updateOrCreate(['id' => $request->create_id],
+        //   Contacts::updateOrCreate(['id' => $request->create_id],
         //   [ 'user_id'=>$request->user, 'subject' =>$request->subject,'message' => $request->messageH]
-        // );   
+        //   );   
                
-        User::updateOrCreate(['id' => $request->create_id],
-        [ 'name' => 'name','email' => 'request@email.c','role' => 'user',
-        'password' => bcrypt (123456789)]
-       );   
-    
+      
 
        return response()->json(['success'=>'Product saved successfully.']);
     }
