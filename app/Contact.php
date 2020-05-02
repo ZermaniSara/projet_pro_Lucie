@@ -22,5 +22,16 @@ class Contact extends Model
         'user_id', 'subject','message'
     ];
 
+   
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
 
 }

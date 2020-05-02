@@ -77,25 +77,25 @@ class ContactController extends Controller
        
         
         
-      //    $contact = new Contact();
+          $contact = new Contact();
 
       
 
 
-        //   $contact->id= $request->create_id;
-        //   $contact->user_id= $request->user;
-        //   $contact->subject= $request->subject;
-        //   $contact->message= $request->messageH;
+           $contact->id= $request->create_id;
+           $contact->user_id= $request->user;
+           $contact->subject= $request->subject;
+          $contact->message= $request->messageH;
         
         
-        //   $contact->save();
+         $contact->save();
         
           
             // $contact->save();
   
-         Contacts::updateOrCreate(['id' => $request->create_id],
-           ['user_id'=>$request->user_id, 'subject' =>'$request->subject','message' => $request->messageH]
-           );   
+        //  Contacts::updateOrCreate(['id' => $request->create_id],
+        //    ['user_id'=>$request->user_id, 'subject' =>'$request->subject','message' => $request->messageH]
+        //    );   
                
       
 
