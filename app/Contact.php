@@ -13,6 +13,14 @@ class Contact extends Model
         return $this->belongsTo('App\User');
     }
     
+  /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'subject','message'
+    ];
 
 
 }

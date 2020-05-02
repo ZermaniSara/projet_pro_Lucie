@@ -384,7 +384,8 @@ $(function() {
 
            
      
-      
+          e.preventDefault();
+          $(this).html('Sending..');
          
           $.ajax({
               
@@ -395,7 +396,7 @@ $(function() {
             dataType: 'json',
             
             success: function (data) {
-             
+               
                 $('#productForm').trigger("reset");
                 $('#createModel').modal('hide');
                 table.draw();
