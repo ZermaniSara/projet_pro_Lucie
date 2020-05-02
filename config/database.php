@@ -44,9 +44,7 @@ return [
         ],
 
         'mysql' => [
-            'charset' => 'utf8',
-            'collation' => 'utf8_general_ci',
-            'client_encoding'=> 'utf8mb4',
+           
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
