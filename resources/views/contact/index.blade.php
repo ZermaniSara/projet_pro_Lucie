@@ -245,7 +245,9 @@
 
    <style>
 body{
-    overflow: hidden !important;
+    /* overflow: hidden !important;  */
+    min-height:100vh ;
+    min-width:100vh ;
 }
 
 #contenu{
@@ -280,6 +282,7 @@ body{
         background-repeat: no-repeat;
         width:100% !important;
      
+        
     }
     #titre{
         color:white;
