@@ -168,7 +168,7 @@
                     <select class="form-control" name="user" id="user" >
                                                 @foreach($users as $user)
                                                 @if($user->role =="user")
-                                                    <option  name="user" id="user" value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option   value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endif
                                                 @endforeach
                                                 
