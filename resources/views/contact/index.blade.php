@@ -163,19 +163,20 @@
                 <form id="productForm" name="productForm" class="form-horizontal">
                    <input type="hidden" name="create_id" id="create_id">
                    <div class="form-group"  id="choose">
-                    <label for="name" class="col-sm-12 control-label">Choose User*</label>
+                        <label for="name" class="col-sm-12 control-label">Choose User*</label>
                     <div class="col-sm-12">
-                    <select class="form-control" name="user" id="user" >
+                            <select class="form-control" name="user" id="user" >
                                                 @foreach($users as $user)
                                                 @if($user->role =="user")
                                                     <option   value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endif
                                                 @endforeach
                                                 
-                                            </select >
-                                            </div>
+                             </select >
+                    </div>
                    
-               </div>
+                   
+                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Subject*</label>
@@ -200,7 +201,7 @@
             </div>
         </div>
     </div>
-    </div>
+    
 </div>   
 
  <!-- Afficher Table + Edit et delete  -->
@@ -239,6 +240,7 @@
  -->
 
 
+</div>
 </div>
 </body>
     
