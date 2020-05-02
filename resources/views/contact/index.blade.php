@@ -348,6 +348,7 @@ $(function() {
          
         
       });
+   
       $('body').on('click', '.editProduct', function () {
         var product_id = $(this).data('id');
      
@@ -362,7 +363,7 @@ $(function() {
             
         })
         
-     });
+           });
      
     
       
@@ -393,12 +394,13 @@ $(function() {
             url: "{{ route('contact.store') }}",
             type: "POST",
             dataType: 'json',
+            
             success: function (data) {
        
                 $('#productForm').trigger("reset");
                 $('#createModel').modal('hide');
                 table.draw();
-           
+               
             },
             error: function (data) {
                 
@@ -407,7 +409,7 @@ $(function() {
                 $('#saveBtn').html('Save Changes');
             }
         });
-      });
+    });
       
       $('body').on('click', '.deleteProduct', function () {
        
@@ -424,9 +426,9 @@ $(function() {
                   console.log('Error:', data);
               }
           });}
-      });
-       
-    });
+     
+         });
+        });
   </script>
 
   
