@@ -71,22 +71,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request,[
-        //     'user_id' => 'required',
-        //     'subject' => 'required',
-        //     'message' => 'required',
-        // ]);
+       
+        
+        
         $contact = new Contact();
 
       
+
+
         $contact->id= $request->create_id;
         $contact->user_id= $request->user;
         $contact->message= $request->messageH;
         $contact->subject= $request->subject;
         
         $contact->save();
-        Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
-   
+       
     
     //         $contact->save();
     //    Contacts::updateOrCreate(['id' => $request->create_id],
