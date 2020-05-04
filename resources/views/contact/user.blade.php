@@ -86,6 +86,7 @@
         
 
 
+
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
   <div class="py-4 px-3 mb-4 bg-light">
@@ -113,24 +114,34 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('contact.user') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('contact.user') }}"  class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Send a Message')}}
             </a>
     </li>
     <li class="nav-item">
-      <a href="" class="nav-link text-dark font-italic">
+      <a href="{{ route('contact.index') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                {{__(  'Messages archive')}}
+                {{__(  'Messages received')}}
+            </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{ route('contact.show') }}" class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                {{__(  'Messages sent')}}
             </a>
     </li>
   
   </ul>
 
   </div>
+<!-- End vertical navbar -->
 
 
 @toastr_css
+
+
 
 
 <div class="row backgrounding" id="box">
@@ -144,6 +155,22 @@
                 <form  method="post" action="{{ route('contact.send') }}">
                   @csrf
                    
+                  <div class="form-group row"  id="choose">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">Choose User*</label>
+                    <div class="col-md-6">
+                            <select class="form-control" name="user" id="user" >
+                                                @foreach($users as $user)
+                                                @if($user->role =="user" || $user->role =="admin")
+                                                    <option   value="{{ $user->id }}">{{ $user->name }}({{  $user->email}} )</option>
+                                                    @endif
+                                                @endforeach
+                                                
+                             </select >
+                    </div>
+                   
+                   
+                     </div>
+
                   <div class="form-group row">
                     
                     <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Subject*') }}</label>

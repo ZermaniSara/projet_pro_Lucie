@@ -56,6 +56,7 @@ Route::post('/contactA','ContactController@store2')->name('contact.store2');
 
 Route::post('/messageA','MessageController@store2')->name('message.store2');
  Route::get('/MessageR','MessageController@show')->name('message.show');
+ Route::get('/ContactR','ContactController@show')->name('contact.show');
 
 Route::get('/MessageM','MessageController@user')->name('message.user');
 Route::post('/SendA','MessageController@sendMessage')->name('message.send');

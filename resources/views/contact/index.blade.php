@@ -17,6 +17,7 @@
     
         <!-- Scripts -->
        
+       
     
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -80,6 +81,8 @@
     </nav>
         
 
+    @toastr_css
+
 
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
@@ -92,8 +95,7 @@
     </div>
   </div>
 
-
-
+  
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item">
       <a href="{{ route('home') }}" class="nav-link text-dark font-italic bg-light">
@@ -108,7 +110,7 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('message.user') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('contact.user') }}"  class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Send a Message')}}
             </a>
@@ -121,14 +123,13 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{ route('message.index') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('contact.show') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Messages sent')}}
             </a>
     </li>
   
   </ul>
-
   </div>
 <!-- End vertical navbar -->
 
@@ -164,11 +165,14 @@
 
 
 <!-- response  message  -->
+
+
+<!-- response  message  -->
 <div class="modal fade" id="responseModel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="createHeading"></h4>
+                <h4 class="modal-title" id="responseHeading"></h4>
             </div>
             <div class="modal-body">
                 <form id="productFormR" name="productFormR" class="form-horizontal">
@@ -196,6 +200,7 @@
 
 
 
+
 <!-- Create message  -->
 <div class="modal fade" id="createModel" aria-hidden="true">
     <div class="modal-dialog">
@@ -211,8 +216,9 @@
                     <div class="col-sm-12">
                             <select class="form-control" name="user" id="user" >
                                                 @foreach($users as $user)
-                                                @if($user->role =="user")
-                                                    <option   value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @if($user->role =="user" || $user->role =="admin")
+                                                <option   value="{{ $user->id }}">{{ $user->name }}({{  $user->email}} )</option>
+                                                   
                                                     @endif
                                                 @endforeach
                                                 
@@ -272,10 +278,10 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-offset-2 col-sm-10">
+                     <div class="col-sm-offset-2 col-sm-10">
                      <button type="submit" class="btn btn-primary" id="saveBtn1" value="create">{{__('Response')}}
                      </button>
-                    </div>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -340,6 +346,8 @@ body{
     }
    </style>
 
+@toastr_js
+@toastr_render
 
 </html>
 
@@ -413,40 +421,43 @@ $(function() {
       
            $('#saveBtn1').click(function (e) {
            
-            e.preventDefault();
-            $(this).html('Sending..');
-            alert('test');
+           
 
-            
-            $('#saveBtn2').val("create-product");
-          $('#response_id').val('');
+            $('#responseHeading').html( "Response");
+           $('#saveBtn2').val("create-product");
+         $('#response_id').val('');
+       
+      
+
+
+        
+           $('#ajaxModel').modal('hide');
+           $('#responseModel').modal('show');
+           // $('#response_id').val('#produt_id');
+           // $('#user').val('#user');
+           // $('#subject').val('#subject');
         
        
-
-
-       $('#modelHeading').html("Response");
-            $('#ajaxModel').modal('hide');
-            $('#responseModel').modal('show');
-            // $('#response_id').val('#produt_id');
-            // $('#user').val('#user');
-            // $('#subject').val('#subject');
+           e.preventDefault();
+           $(this).html('Sending..');
          
-        
-
-          
 
 
-            });
+           });
 
 
             $('#saveBtn2').click(function (e) {
+ 
 
                 var pi=($('input#product_id').val());
+              
                
                $('#userR').val(pi);
 
               
                $('#response_id').val();  
+
+              
 
  $.ajax({
      
@@ -460,6 +471,7 @@ data: $('#productFormR').serialize(),
       
        $('#productFormR').trigger("reset");
        $('#ResponseModel').modal('hide');
+      
        table.draw();
        
    },
