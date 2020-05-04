@@ -81,6 +81,7 @@
         
 
 
+    @toastr_css
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
   <div class="py-4 px-3 mb-4 bg-light">
@@ -309,7 +310,8 @@ body{
     }
    </style>
 
-
+@toastr_js
+@toastr_render
 </html>
 
 

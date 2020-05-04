@@ -124,12 +124,30 @@ class MessageController extends Controller
     public function store2(Request $request)
     {
        
- 
-        $product = Contact::find($request->userR);
-        Contact::updateOrCreate(['id' => $request->response_id],
-        [ 'user_id'=>$product->user_id, 'subject' =>'RE:'.$product->subject,'message' => $request->messageR]
-        );   
-        Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
+
+      
+  
+
+      $product = Message::find($request->userR);
+
+      
+      
+      
+      $contact = new Message();
+
+      $contact->id= $request->response_id;
+      $contact->user_id_e=  Auth::user()->id;
+      $contact->user_id_r= $product->user_id_e;
+      $contact->subject= 'RE:'.$product->subject;
+      $contact->message= $request->messageR;
+   
+   
+    $contact->save();
+        // $product = Message::find($request->userR);
+        // Message::updateOrCreate(['id' => $request->response_id],
+        // [ 'user_id_e'=>$Auth::user()->id,'user_id_r'=>$request->userR, 'subject' =>'RE:'.$product->subject,'message' => $request->messageR]
+        // );   
+      //  Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
           
 
 

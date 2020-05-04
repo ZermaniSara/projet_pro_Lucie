@@ -413,7 +413,10 @@ $(function() {
       
            $('#saveBtn1').click(function (e) {
            
-           
+            e.preventDefault();
+            $(this).html('Sending..');
+            alert('test');
+
             
             $('#saveBtn2').val("create-product");
           $('#response_id').val('');
@@ -430,15 +433,13 @@ $(function() {
          
         
 
-            e.preventDefault();
-            $(this).html('Sending..');
+          
 
 
             });
 
 
             $('#saveBtn2').click(function (e) {
- 
 
                 var pi=($('input#product_id').val());
                

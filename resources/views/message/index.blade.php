@@ -17,6 +17,7 @@
     
         <!-- Scripts -->
        
+       
     
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -79,6 +80,8 @@
         </div>
     </nav>
         
+
+    @toastr_css
 
 
 <!-- Vertical navbar -->
@@ -165,6 +168,41 @@
 
 <!-- response  message  -->
 
+
+<!-- response  message  -->
+<div class="modal fade" id="responseModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="responseHeading"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="productFormR" name="productFormR" class="form-horizontal">
+                   <input type="hidden" name="response_id"  id="response_id" >
+                   <input type="hidden" name="userR" id="userR" >
+                   <input type="hidden" name="subjectR" id="subjectR"  >
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Message*</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control" id="messageR" name="messageR"  value=""  required=""  rows="5" >
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-offset-2 col-sm-10">
+                     <button type="submit" class="btn btn-primary" id="saveBtn2" value="response">{{__('Send')}}
+                     </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
 <!-- Create message  -->
 <div class="modal fade" id="createModel" aria-hidden="true">
     <div class="modal-dialog">
@@ -241,10 +279,10 @@
                         </div>
                     </div>
 
-                    <!-- <div class="col-sm-offset-2 col-sm-10">
+                     <div class="col-sm-offset-2 col-sm-10">
                      <button type="submit" class="btn btn-primary" id="saveBtn1" value="create">{{__('Response')}}
                      </button>
-                    </div> -->
+                    </div> 
                 </form>
             </div>
         </div>
@@ -309,6 +347,8 @@ body{
     }
    </style>
 
+@toastr_js
+@toastr_render
 
 </html>
 
@@ -383,38 +423,42 @@ $(function() {
            $('#saveBtn1').click(function (e) {
            
            
-            
-            $('#saveBtn2').val("create-product");
-          $('#response_id').val('');
+
+            $('#responseHeading').html( "Response");
+           $('#saveBtn2').val("create-product");
+         $('#response_id').val('');
+       
+      
+
+
+        
+           $('#ajaxModel').modal('hide');
+           $('#responseModel').modal('show');
+           // $('#response_id').val('#produt_id');
+           // $('#user').val('#user');
+           // $('#subject').val('#subject');
         
        
-
-
-       $('#modelHeading').html("Response");
-            $('#ajaxModel').modal('hide');
-            $('#responseModel').modal('show');
-            // $('#response_id').val('#produt_id');
-            // $('#user').val('#user');
-            // $('#subject').val('#subject');
+           e.preventDefault();
+           $(this).html('Sending..');
          
-        
-
-            e.preventDefault();
-            $(this).html('Sending..');
 
 
-            });
+           });
 
 
             $('#saveBtn2').click(function (e) {
  
 
                 var pi=($('input#product_id').val());
+              
                
                $('#userR').val(pi);
 
               
                $('#response_id').val();  
+
+              
 
  $.ajax({
      
@@ -428,6 +472,7 @@ data: $('#productFormR').serialize(),
       
        $('#productFormR').trigger("reset");
        $('#ResponseModel').modal('hide');
+      
        table.draw();
        
    },
