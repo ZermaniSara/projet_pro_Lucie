@@ -10,9 +10,21 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function contact()
-    {
-        return $this->hasMany('App\Contact');
+    public function contact(){
+        return $this->hasMany('App\Contact','user_id');
+    }
+    
+    public function user_id_e(){
+        return $this->hasMany('App\Contact','user_id_e');
+    }
+
+
+    public function mesage(){
+        return $this->hasMany('App\Contact','user_id');
+    }
+    
+    public function message(){
+        return $this->hasMany('App\Contact','user_id_e');
     }
 
     /**

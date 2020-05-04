@@ -91,13 +91,31 @@ class ContactController extends Controller
           
             // $contact->save();
   
-         Contact::updateOrCreate(['id' => $request->create_id],
+         Message::updateOrCreate(['id' => $request->create_id],
            [ 'user_id'=>$request->user, 'subject' =>$request->subject,'message' => $request->messageH]
            );   
-               
-      
+           Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
+           
+  
 
        return response()->json(['success'=>'Product saved successfully.']);
+    }
+
+
+    
+    public function store2(Request $request)
+    {
+       
+ 
+        $product = Message::find($request->userR);
+        Message::updateOrCreate(['id' => $request->response_id],
+        [ 'user_id'=>$product->user_id, 'subject' =>'RE:'.$product->subject,'message' => $request->messageR]
+        );   
+        Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
+           
+
+
+    return response()->json(['success'=>'Product saved successfully.']);
     }
     /**
      * Show the form for editing the specified resource.
@@ -156,7 +174,7 @@ class ContactController extends Controller
         
        
 
-        return view ('download');
+             return view ('productAjax');
         
     }
 

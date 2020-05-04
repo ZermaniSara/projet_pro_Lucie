@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContactsTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateContactsTable extends Migration
     public function up()
     {
         
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id_e')->unsigned();
             $table->integer('user_id_r')->unsigned();
@@ -36,7 +36,7 @@ class CreateContactsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('messages');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
      
     }

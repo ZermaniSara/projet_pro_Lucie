@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IRD</title>
+<title>IRD</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -23,7 +23,13 @@
     
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+ 
+   
+
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">  
+ <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+ 
 
    
 <body>
@@ -79,7 +85,7 @@
         </div>
     </nav>
         
-
+    @toastr_css
 
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
@@ -108,15 +114,22 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="" class="nav-link text-dark font-italic">
+      <a href="{{ route('message.user') }}"  class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                {{__(  'Send a Messages')}}
+                {{__(  'Send a Message')}}
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('contact.index') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('message.index') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                {{__(  ' Messages archives')}}
+                {{__(  'Messages received')}}
+            </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{ route('message.show') }}" class="nav-link text-dark font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                {{__(  'Messages sent')}}
             </a>
     </li>
   
@@ -260,9 +273,12 @@ body{
    </style>
 
 
+
 </html>
 
 
+@toastr_js
+@toastr_render
 <script type="text/javascript">
 $(function() {
   // Sidebar toggle behavior
@@ -358,3 +374,5 @@ $(function() {
        
     });
   </script>
+
+

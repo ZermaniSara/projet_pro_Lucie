@@ -108,20 +108,20 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('message.user') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('message.user') }}"  class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Send a Message')}}
             </a>
     </li>
     <li class="nav-item">
-      <a href="{{ route('contact.index') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('message.index') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Messages received')}}
             </a>
     </li>
 
     <li class="nav-item">
-      <a href="{{ route('message.index') }}" class="nav-link text-dark font-italic">
+      <a href="{{ route('message.show') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 {{__(  'Messages sent')}}
             </a>
@@ -138,7 +138,7 @@
 <div class="row backgrounding" id="box">
 
 <div class="container"id="contenu">
-    <h3 id="titre">{{__('Welcome to messages received area')}}</h3>
+    <h3 id="titre">{{__('Welcome to messages sent area')}}</h3>
     {{-- <a class="btn btn-warning" href="#" id="modeadmin"> {{__('Change To Maintenance Mode')}}</a> --}}
     <a class="btn btn-success" href="javascript:void(0)" id="createNewProduct"> {{__('Send a New Message')}}</a>
    
@@ -164,37 +164,6 @@
 
 
 <!-- response  message  -->
-<div class="modal fade" id="responseModel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="createHeading"></h4>
-            </div>
-            <div class="modal-body">
-                <form id="productFormR" name="productFormR" class="form-horizontal">
-                   <input type="hidden" name="response_id"  id="response_id" >
-                   <input type="hidden" name="userR" id="userR" >
-                   <input type="hidden" name="subjectR" id="subjectR"  >
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Message*</label>
-                        <div class="col-sm-12">
-                            <textarea class="form-control" id="messageR" name="messageR"  value=""  required=""  rows="5" >
-                            </textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-offset-2 col-sm-10">
-                     <button type="submit" class="btn btn-primary" id="saveBtn2" value="response">{{__('Send')}}
-                     </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-</div>
-
-
 
 <!-- Create message  -->
 <div class="modal fade" id="createModel" aria-hidden="true">
@@ -272,10 +241,10 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <!-- <div class="col-sm-offset-2 col-sm-10">
                      <button type="submit" class="btn btn-primary" id="saveBtn1" value="create">{{__('Response')}}
                      </button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -364,7 +333,7 @@ $(function() {
       var table = $('.data-table').DataTable({
           processing: true,
           serverSide: true,
-          ajax: "{{ route('contact.index') }}",
+          ajax: "{{ route('message.show') }}",
           columns: [
              // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'name', name: 'name'},
@@ -397,7 +366,7 @@ $(function() {
       $('body').on('click', '.editProduct', function () {
         var product_id = $(this).data('id');
     
-        $.get("{{ route('contact.index') }}" +'/' + product_id +'/edit', function (data) {
+        $.get("{{ route('message.index') }}" +'/' + product_id +'/edit', function (data) {
             $('#modelHeading').html(data.subject);
             $('#ajaxModel').modal('show');
             $('#product_id').val(data.id);
@@ -451,7 +420,7 @@ $(function() {
      
     
 data: $('#productFormR').serialize(),
-   url: "{{ route('contact.store2') }}",
+   url: "{{ route('message.store2') }}",
    type: "POST",
    dataType: 'json',
    
@@ -482,7 +451,7 @@ data: $('#productFormR').serialize(),
               
              
          data: $('#productForm').serialize(),
-            url: "{{ route('contact.store') }}",
+            url: "{{ route('message.store') }}",
             type: "POST",
             dataType: 'json',
             
@@ -509,7 +478,7 @@ data: $('#productFormR').serialize(),
         
           $.ajax({
               type: "DELETE",
-              url: "{{ route('contact.store') }}"+'/'+product_id,
+              url: "{{ route('message.store') }}"+'/'+product_id,
               success: function (data) {
                   table.draw();
               },

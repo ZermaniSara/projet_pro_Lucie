@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::resource('ajaxproducts','ProductAjaxController',['middleware' => 'isadmin']);
 
-Route::resource('contact','ContactController');
+Route::resource('contact','ContactController', ['middleware' => 'isuser']);
+Route::resource('message','MessageController',['middleware' => 'isadmin']);
 
 
 Route::get('admin',['middleware' => 'isadmin', function () {
@@ -49,8 +50,12 @@ Route::get('post', 'PostController@index');
 
 // Route::get('contact/{id}','ContactController@show')->name('contact.show');
 // Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
-Route::post('/','ContactController@sendMessage')->name('contact.send');
+Route::post('/SendU','ContactController@sendMessage')->name('contact.send');
 Route::get('/contactU','ContactController@user')->name('contact.user');
+Route::post('/contactA','ContactController@store2')->name('contact.store2');
 
-// Route::get('/contactA','ContactController@index')->name('contact.index');
+Route::post('/messageA','MessageController@store2')->name('message.store2');
+ Route::get('/MessageR','MessageController@show')->name('message.show');
 
+Route::get('/MessageM','MessageController@user')->name('message.user');
+Route::post('/SendA','MessageController@sendMessage')->name('message.send');
