@@ -16,5 +16,8 @@ class Contact extends Model
       return $this->belongsTo('App\User','user_id_e','id');
   }
 
+  protected $fillable = [
+    'user_id_e', 'user_id_r','subject','message'
+];
 
 }

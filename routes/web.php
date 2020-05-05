@@ -60,3 +60,8 @@ Route::post('/messageA','MessageController@store2')->name('message.store2');
 
 Route::get('/MessageM','MessageController@user')->name('message.user');
 Route::post('/SendA','MessageController@sendMessage')->name('message.send');
+
+Route::resource('slider','SliderController');
+
+
+Route::get('/news','NewsController@index')->name('news.index');

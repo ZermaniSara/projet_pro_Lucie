@@ -112,7 +112,7 @@
             </a>
     </li>
     <li class="nav-item">
-      <a href="#news" class="nav-link text-dark font-italic">
+      <a href="{{ route('home') }}" class="nav-link text-dark font-italic">
                 <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                 {{__(   'News')}}
             </a>

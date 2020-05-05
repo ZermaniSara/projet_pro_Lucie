@@ -92,31 +92,38 @@ class MessageController extends Controller
        
         
         
-      $contact = new Message();
+    //   $contact = new Message();
 
-      
-
-
-           $contact->id= $request->create_id;
-           $contact->user_id_e=  Auth::user()->id;
-           $contact->user_id_r= $request->user;
-           $contact->subject= $request->subject;
-           $contact->message= $request->messageH;
+    //        $contact->id= $request->create_id;
+    //        $contact->user_id_e=  Auth::user()->id;
+    //        $contact->user_id_r= $request->user;
+    //        $contact->subject= $request->subject;
+    //        $contact->message= $request->messageH;
         
         
-         $contact->save();
+    //      $contact->save();
         
           
              
   
-        //  Message::updateOrCreate(['id' => $request->create_id],
-        //     [ 'user_id_e'=> Auth::user()->id,'user_id_r'=>$request->user, 'subject' =>$request->subject,'message' => $request->messageH]
-        //    );   
+    //    Message::updateOrCreate(['id' => $request->create_id,
+    //           'user_id_e'=> Auth::user()->id,'user_id_r'=>$request->user,
+    //           'subject' =>$request->subject,'message' => $request->messageH]
+    //    );   
                
-           Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
+        //   Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
         
+      
+ 
+        Message::updateOrCreate(['id' => $request->create_id],
+         [ 'user_id_e' =>  Auth::user()->id,'user_id_r' => $request->user, 
+         'subject' => $request->subject,
+         'message' => $request->messageH]
+    );
+        
+        return response()->json(['success'=>'Product saved successfully.']);
+    
 
-       return response()->json(['success'=>'Product saved successfully.']);
     }
 
 
@@ -133,21 +140,23 @@ class MessageController extends Controller
       
       
       
-      $contact = new Message();
+    //   $contact = new Message();
 
-      $contact->id= $request->response_id;
-      $contact->user_id_e=  Auth::user()->id;
-      $contact->user_id_r= $product->user_id_e;
-      $contact->subject= 'RE:'.$product->subject;
-      $contact->message= $request->messageR;
+    //   $contact->id= $request->response_id;
+    //   $contact->user_id_e=  Auth::user()->id;
+    //   $contact->user_id_r= $product->user_id_e;
+    //   $contact->subject= 'RE:'.$product->subject;
+    //   $contact->message= $request->messageR;
    
    
-    $contact->save();
+    // $contact->save();
+  
         // $product = Message::find($request->userR);
-        // Message::updateOrCreate(['id' => $request->response_id],
-        // [ 'user_id_e'=>$Auth::user()->id,'user_id_r'=>$request->userR, 'subject' =>'RE:'.$product->subject,'message' => $request->messageR]
-        // );   
-      //  Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
+         Message::updateOrCreate(['id' => $request->response_id],
+         [ 'user_id_e'=>Auth::user()->id,'user_id_r'=>$product->user_id_e,
+          'subject' =>'RE:'.$product->subject,'message' => $request->messageR]
+         );   
+    //    Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
           
 
 
